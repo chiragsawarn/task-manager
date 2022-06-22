@@ -1,0 +1,10 @@
+<div class="col-md-12" [formGroup]="weekdaysForm" (change)="collectDaysEvent.emit(weekdaysForm.value)">
+    <label for="weekdays" class="form-label">Weekdays</label>
+    <div class="d-flex btn-group" role="group" aria-label="Basic radio toggle button group">
+        <span *ngFor="let day of days">
+            <input type="checkbox" formControlName={{day}} class="btn-check" name={{day}} value={{day}} id={{day}} autocomplete="off">
+            <label class="btn btn-outline-warning" for={{day}}>{{day}}</label>
+        </span>
+    </div>
+</div>
+{{weekdaysForm.value | json}}

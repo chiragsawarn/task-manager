@@ -1,0 +1,25 @@
+GET http://localhost:3000/subscribers
+
+###
+
+POST http://localhost:3000/subscribers
+Content-Type: application/json
+
+{
+    "name":"Rudransh Joshi",
+    "subscribedToChannel":"Code with Harry"
+}
+
+###
+GET http://localhost:3000/subscribers/62b193b91887b51448c0b5fc
+
+###
+DELETE http://localhost:3000/subscribers/62b193b91887b51448c0b5fc
+
+###
+PATCH http://localhost:3000/subscribers/62b193b91887b51448c0b5fc
+Content-Type: application/json
+
+{
+    "name":"Sajal Aggarwal"
+}

@@ -1,0 +1,97 @@
+<h2 class="text-center mt-4 mb-5">Add task</h2>
+<div class="d-flex justify-content-center">
+    <div class="col-md-6">
+        <form class="row g-3" [formGroup]="addTaskForm" (ngSubmit)="addTask()">
+
+            <div class="col-md-12">
+                <label for="task" class="form-label">Task</label>
+                <input type="text" formControlName="task" class="form-control" id="task" name="task" placeholder="Add a task here..."
+                    required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <label for="covid-19-status" class="form-label">Frequency</label>
+                <div class="d-flex btn-group" role="group" aria-label="Basic radio toggle button group">
+
+                    <input type="radio" formControlName="frequency" (click)="onOtherdays()" class="btn-check" name="frequency" value="once" id="once" autocomplete="off" checked>
+                    <label class="btn btn-outline-warning" for="once">Once</label>
+
+                    <input type="radio" formControlName="frequency" (click)="onOtherdays()" class="btn-check" name="frequency" value="daily" id="daily" autocomplete="off">
+                    <label class="btn btn-outline-warning" for="daily">Daily</label>
+
+                    <input type="radio" formControlName="frequency" (change)="onWeekdays()" class="btn-check" name="frequency" value="weekly" id="weekly" autocomplete="off">
+                    <label class="btn btn-outline-warning" for="weekly">Weekly</label>
+
+                    <input type="radio" formControlName="frequency" (change)="onMonthdays()" class="btn-check" name="frequency" value="monthly" id="monthly" autocomplete="off">
+                    <label class="btn btn-outline-warning" for="monthly">Monthly</label>
+                
+                </div>
+            </div>
+
+            <ng-container *ngComponentOutlet="freq" (collectDaysEvent)="collectDays($event)"></ng-container>
+
+            <div class="col-md-4">
+                <label for="startTime" class="form-label">Timing</label>
+                <div class="d-flex">
+                    <input type="time" formControlName="startTime" class="form-control" id="startTime" name="startTime">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="phone" class="form-label">Duration</label>
+                <div class="d-flex">
+                    <input formControlName="durationHours" class="form-control text-center" type="number" id="hours" name="hours" min=0 max=16 placeholder="hours">
+                    <input formControlName="durationMinutes" class="form-control text-center" type="number" id="minutes" min=0 max=59 name="minutes"
+                        placeholder="minutes">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="type" class="form-label">Type</label>
+                <select formControlName="type" class="form-select" id="type" name="type" required>
+                    <option selected disabled value="">Type</option>
+                    <option value="college">College</option>
+                    <option value="internship">Internship</option>
+                    <option value="exercise">Exercise</option>
+                    <option value="chores">Chores</option>
+                    <option value="maintainence">Maintainence</option>
+                    <option value="media">Media</option>
+                    <option value="social">Social</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid type.
+                </div>
+            </div>
+
+            <!-- <div class="col-md-10">
+                <input type="text" formControlName="subtask" class="form-control" id="subtask" name="subtask" placeholder="Add a subtask here..."
+                required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div> -->
+            
+            
+            <div formArrayName="subtasks" *ngFor="let subtask of subtasks.controls; let i=index">
+                <label for="subtask" class="form-label">Subtask-{{i+1}}</label>
+                <input type="text" class="form-control" [formControlName]="i">
+            </div>
+            
+            <div class="col-md-12 mt-5">
+                <button (click)="addSubtask()" type="button" class="btn btn-warning w-100">
+                    Add Subtask
+                </button>
+            </div>
+
+            <div class="col-3 mt-3">
+                <button class="btn btn-dark" type="submit">Submit form</button>
+            </div>
+
+            {{addTaskForm.value | json}}
+
+        </form>
+    </div>
+</div>
