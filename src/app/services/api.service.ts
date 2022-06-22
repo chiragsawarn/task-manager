@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  url = "http://localhost:3000/tasks";
-
-  constructor(private http:HttpClient) { }
+  private url: string;
+  private corsHeaders: HttpHeaders;
+  
+  constructor(private http:HttpClient) {
+    this.url = "http://localhost:3000/tasks";
+    this.corsHeaders = new HttpHeaders().set('access-control-allow-origin',"http://localhost:3000/");
+  }
 
   getTasks(){
     return this.http.get(this.url);

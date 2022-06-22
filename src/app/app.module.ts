@@ -10,6 +10,7 @@ import { WeekdaysComponent } from './weekdays/weekdays.component';
 import { MonthdaysComponent } from './monthdays/monthdays.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BlankComponent } from './blank/blank.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BlankComponent } from './blank/blank.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

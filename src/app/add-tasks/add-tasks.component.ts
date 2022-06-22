@@ -21,7 +21,7 @@ export class AddTasksComponent implements OnInit {
 
   ngOnInit(): void {
     this.addTaskForm = this.fb.group({
-      task:['',[Validators.required]],
+      name:['',[Validators.required]],
       frequency:['once',[Validators.required]],
       startTime:['',[Validators.required]],
       durationHours:['',[Validators.required]],
@@ -53,7 +53,8 @@ export class AddTasksComponent implements OnInit {
   addTask(){
     console.log(this.addTaskForm.value);
     this.api.saveTask(this.addTaskForm.value).subscribe((res)=>{
-      alert(res);
+      alert(JSON.stringify(res));
+      console.log(res);
     })
   }
 
