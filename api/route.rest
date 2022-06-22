@@ -1,25 +1,32 @@
-GET http://localhost:3000/subscribers
+GET http://localhost:3000/tasks
 
 ###
 
-POST http://localhost:3000/subscribers
+POST http://localhost:3000/tasks
 Content-Type: application/json
 
 {
-    "name":"Rudransh Joshi",
-    "subscribedToChannel":"Code with Harry"
+    "name":"Buy Groceries",
+    "frequency":"Weekly",
+    "startTime":"08:30",
+    "durationHours":"0",
+    "durationMinutes":"15",
+    "type":"chores",
+    "subtasks":["Buy Bread","Buy Milk"],
+    "weekdays":"{\"monday\":false,\"tuesday\":true}",
+    "monthdays":{}
 }
 
 ###
-GET http://localhost:3000/subscribers/62b193b91887b51448c0b5fc
+GET http://localhost:3000/tasks/62b2f4d4136252e748b6e9d1
 
 ###
-DELETE http://localhost:3000/subscribers/62b193b91887b51448c0b5fc
+DELETE http://localhost:3000/tasks/62b2f4d4136252e748b6e9d1
 
 ###
-PATCH http://localhost:3000/subscribers/62b193b91887b51448c0b5fc
+PATCH http://localhost:3000/tasks/62b2f4d4136252e748b6e9d1
 Content-Type: application/json
 
 {
-    "name":"Sajal Aggarwal"
+    "name":"Buy Stuff"
 }

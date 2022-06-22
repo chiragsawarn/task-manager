@@ -5,6 +5,8 @@ import { BlankComponent } from '../blank/blank.component';
 import {FormGroup, FormControl, FormBuilder, FormArray, Validators} from '@angular/forms';
 import { CollectWeekdaysService } from '../services/collect-weekdays.service';
 import { CollectMonthdaysService } from '../services/collect-monthdays.service';
+import { ApiService } from '../services/api.service';
+
 
 @Component({
   selector: 'app-add-tasks',
@@ -15,7 +17,7 @@ import { CollectMonthdaysService } from '../services/collect-monthdays.service';
 export class AddTasksComponent implements OnInit {
   addTaskForm:FormGroup;
 
-  constructor(private fb:FormBuilder, private _collectWeekdaysService: CollectWeekdaysService, private _collectMonthdaysService: CollectMonthdaysService) { }
+  constructor(private fb:FormBuilder, private _collectWeekdaysService: CollectWeekdaysService, private _collectMonthdaysService: CollectMonthdaysService, private api:ApiService) { }
 
   ngOnInit(): void {
     this.addTaskForm = this.fb.group({
@@ -31,18 +33,14 @@ export class AddTasksComponent implements OnInit {
     })
 
     this._collectWeekdaysService.weekdaysMessage$.subscribe((message)=>{
-      this.addTaskForm.controls.weekdays.setValue(message);
+      this.addTaskForm.controls.weekdays.setValue(JSON.stringify(message));
     })
 
     this._collectMonthdaysService.monthdaysMessage$.subscribe((message)=>{
-      this.addTaskForm.controls.monthdays.setValue(message);
+      this.addTaskForm.controls.monthdays.setValue(JSON.stringify(message));
     })
   }
 
-  collectDays(weekdaysForm:any){
-    console.log(weekdaysForm);
-    // this.addTaskForm.addControl("weekdays",weekdaysForm);
-  }
 
   get subtasks(){
     return this.addTaskForm.get('subtasks') as FormArray;
@@ -54,6 +52,9 @@ export class AddTasksComponent implements OnInit {
 
   addTask(){
     console.log(this.addTaskForm.value);
+    this.api.saveTask(this.addTaskForm.value).subscribe((res)=>{
+      alert(res);
+    })
   }
 
   freq:any;
