@@ -3,6 +3,8 @@ import { MonthdaysComponent } from '../monthdays/monthdays.component';
 import { WeekdaysComponent } from '../weekdays/weekdays.component';
 import { BlankComponent } from '../blank/blank.component';
 import {FormGroup, FormControl, FormBuilder, FormArray, Validators} from '@angular/forms';
+import { CollectWeekdaysService } from '../services/collect-weekdays.service';
+import { CollectMonthdaysService } from '../services/collect-monthdays.service';
 
 @Component({
   selector: 'app-add-tasks',
@@ -13,7 +15,7 @@ import {FormGroup, FormControl, FormBuilder, FormArray, Validators} from '@angul
 export class AddTasksComponent implements OnInit {
   addTaskForm:FormGroup;
 
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder, private _collectWeekdaysService: CollectWeekdaysService, private _collectMonthdaysService: CollectMonthdaysService) { }
 
   ngOnInit(): void {
     this.addTaskForm = this.fb.group({
@@ -23,7 +25,17 @@ export class AddTasksComponent implements OnInit {
       durationHours:['',[Validators.required]],
       durationMinutes:['',[Validators.required]],
       type:['',[Validators.required]],
-      subtasks:this.fb.array([])
+      subtasks:this.fb.array([]),
+      weekdays:[''],
+      monthdays:[''],
+    })
+
+    this._collectWeekdaysService.weekdaysMessage$.subscribe((message)=>{
+      this.addTaskForm.controls.weekdays.setValue(message);
+    })
+
+    this._collectMonthdaysService.monthdaysMessage$.subscribe((message)=>{
+      this.addTaskForm.controls.monthdays.setValue(message);
     })
   }
 

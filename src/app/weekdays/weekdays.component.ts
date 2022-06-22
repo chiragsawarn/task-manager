@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl} from '@angular/forms';
+import { CollectWeekdaysService } from '../services/collect-weekdays.service';
 
 @Component({
   selector: 'app-weekdays',
@@ -8,7 +9,11 @@ import { FormGroup, FormControl} from '@angular/forms';
 })
 export class WeekdaysComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _collectWeekdaysService:CollectWeekdaysService) { }
+
+  sendWeekdays(){
+    this._collectWeekdaysService.sendMessage(this.weekdaysForm.value);
+  }
 
   ngOnInit(): void {
   }
@@ -25,7 +30,7 @@ export class WeekdaysComponent implements OnInit {
     sunday: new FormControl(false)
   })
 
-  @Output() collectDaysEvent = new EventEmitter<string>();
+  
 
 
 } 

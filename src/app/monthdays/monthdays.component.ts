@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-
+import { CollectMonthdaysService } from '../services/collect-monthdays.service';
 @Component({
   selector: 'app-monthdays',
   templateUrl: './monthdays.component.html',
@@ -8,7 +8,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class MonthdaysComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _collectMonthdaysService:CollectMonthdaysService) { }
+
+  sendMonthdays(){
+    this._collectMonthdaysService.sendMessage(this.monthdaysForm.value);
+  }
 
   ngOnInit(): void {
   }

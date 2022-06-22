@@ -1,4 +1,4 @@
-<div class="col-md-12" [formGroup]="weekdaysForm" (change)="collectDaysEvent.emit(weekdaysForm.value)">
+<div class="col-md-12" [formGroup]="weekdaysForm" (change)="sendWeekdays()">
     <label for="weekdays" class="form-label">Weekdays</label>
     <div class="d-flex btn-group" role="group" aria-label="Basic radio toggle button group">
         <span *ngFor="let day of days">
