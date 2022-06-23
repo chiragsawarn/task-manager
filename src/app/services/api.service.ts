@@ -21,4 +21,9 @@ export class ApiService {
   saveTask(data:any){
     return this.http.post(this.url, data);
   }
+
+  deleteTask(taskId:string){
+    let endpoint = this.url + "/" + taskId;
+    return this.http.delete(endpoint);
+  }
 }

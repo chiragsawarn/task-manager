@@ -25,8 +25,12 @@ export class ViewTasksComponent implements OnInit {
     });
   }
 
-  deleteTask(id:string){
+  
+  deleteTask_util(id:string){
     this.visibilityList.delete(id);
+    this.api.deleteTask(id).subscribe((data)=>{
+      alert(JSON.stringify(data,null,2));
+    })
   }
 
   ngOnInit(): void {
