@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { ApiService } from '../services/api.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-view-tasks',
@@ -8,14 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewTasksComponent implements OnInit {
 
-  // tasks:any;
-  // constructor(private api:ApiService) {
-  //   api.getTasks().subscribe((data:any)=>{
-  //     alert(data.results);
-  //     this.tasks = data.results;
-  //   });
-  // }
-  constructor() { }
+  tasks:any;
+  visibilityList = new Map();
+  filter(data:any){
+    if(data.freqency == 'weekly') data.weekdays = JSON.parse(data.weekdays);
+    if(data.freqency == 'monthly') data.monthdays = JSON.parse(data.monthdays);
+  }
+  constructor(private api:ApiService) {
+    api.getTasks().subscribe((data:any)=>{
+      // alert(JSON.stringify(data,null,2));
+      // this.filter(data);
+      this.tasks = data;
+      for(let task of this.tasks){
+        this.visibilityList.set(task._id, true);
+      }
+    });
+  }
+
+  deleteTask(id:string){
+    this.visibilityList.delete(id);
+  }
 
   ngOnInit(): void {
   }

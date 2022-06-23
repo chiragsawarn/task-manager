@@ -11,6 +11,7 @@ import { MonthdaysComponent } from './monthdays/monthdays.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BlankComponent } from './blank/blank.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewTaskCardComponent } from './view-task-card/view-task-card.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     WeekdaysComponent,
     MonthdaysComponent,
     BlankComponent,
+    ViewTaskCardComponent,
   ],
   imports: [
     BrowserModule,

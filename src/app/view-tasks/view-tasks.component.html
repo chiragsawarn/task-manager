@@ -1,2 +1,42 @@
-<!-- <p>{{tasks | json}}</p> -->
-<p>view-tasks works</p>
+<pre>{{tasks | json}}</pre>
+
+<h2 class="text-center mt-4 mb-5">Upcoming tasks</h2>
+<div class="d-flex justify-content-center">
+    <div class="col-md-6">
+        <div *ngFor="let task of tasks;">
+            <div class="card text-white bg-dark mb-3" *ngIf="this.visibilityList.has(task._id)">
+                <div class="card-header d-flex justify-content-between">
+                    <h3>{{task.name}}</h3>
+                    <h3> Repeats {{task.frequency | titlecase}}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">
+                        <!-- <h5 class="card-title">On 
+                            <span *ngIf="task.frequency == 'weekly'">
+                                <ul *ngFor="let day of task.weekdays">
+                                    <li *ngIf="day == true">{{day}}</li>
+                                </ul>
+                            </span>
+                            <span *ngIf="task.frequency == 'monthly'">
+                                <ul *ngFor="let day of task.monthdays">
+                                    <li *ngIf="day == true">{{day}}</li>
+                                </ul>
+                            </span>
+                        </h5> -->
+                        <h5 >At {{task.startTime}} for <span *ngIf="task.durationHours > 0">{{task.durationHours}} Hrs</span> <span *ngIf="task.durationMinutes > 0"> {{task.durationMinutes}} Mins</span></h5>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <ul *ngFor="let subtask of task.subtasks">
+                                <li>{{subtask}}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-outline-warning" (click)="deleteTask(task._id)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
