@@ -33,11 +33,11 @@ export class AddTasksComponent implements OnInit {
     })
 
     this._collectWeekdaysService.weekdaysMessage$.subscribe((message)=>{
-      this.addTaskForm.controls.weekdays.setValue(JSON.stringify(message));
+      this.addTaskForm.controls.weekdays.setValue(message);
     })
 
     this._collectMonthdaysService.monthdaysMessage$.subscribe((message)=>{
-      this.addTaskForm.controls.monthdays.setValue(JSON.stringify(message));
+      this.addTaskForm.controls.monthdays.setValue(message);
     })
   }
 

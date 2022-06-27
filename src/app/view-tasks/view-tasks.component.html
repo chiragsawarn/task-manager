@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     <div class="card-title">
-                        <!-- <h5 class="card-title">On 
+                        <h5 class="card-title">On 
                             <span *ngIf="task.frequency == 'weekly'">
                                 <ul *ngFor="let day of task.weekdays">
                                     <li *ngIf="day == true">{{day}}</li>
@@ -20,7 +20,7 @@
                                     <li *ngIf="day == true">{{day}}</li>
                                 </ul>
                             </span>
-                        </h5> -->
+                        </h5>
                         <h5 >At {{task.startTime}} for <span *ngIf="task.durationHours > 0">{{task.durationHours}} Hrs</span> <span *ngIf="task.durationMinutes > 0"> {{task.durationMinutes}} Mins</span></h5>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -39,4 +39,4 @@
     </div>
 </div>
 
-<pre>{{tasks | json}}</pre>
+<!-- <pre>{{tasks | json}}</pre> -->

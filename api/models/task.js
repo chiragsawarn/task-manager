@@ -30,7 +30,7 @@ const taskSchema = new mongoose.Schema({
         required:true,
     },
     weekdays:{
-        type:String,
+        type:JSON,
         required:false,
     },
     monthdays:{
