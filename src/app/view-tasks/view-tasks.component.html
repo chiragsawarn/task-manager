@@ -11,13 +11,13 @@
                     <div class="card-title">
                         <h5 class="card-title">On 
                             <span *ngIf="task.frequency == 'weekly'">
-                                <ul *ngFor="let day of task.weekdays">
-                                    <li *ngIf="day == true">{{day}}</li>
+                                <ul *ngFor="let day of task.weekdays | keyvalue">
+                                    <li *ngIf="day.value == true">{{day.key}}</li>
                                 </ul>
                             </span>
                             <span *ngIf="task.frequency == 'monthly'">
-                                <ul *ngFor="let day of task.monthdays">
-                                    <li *ngIf="day == true">{{day}}</li>
+                                <ul *ngFor="let day of task.monthdays | keyvalue">
+                                    <li *ngIf="day.value == true">{{day.key}}</li>
                                 </ul>
                             </span>
                         </h5>
@@ -30,7 +30,8 @@
                             </ul>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-outline-warning" (click)="deleteTask_util(task._id)">Delete</button>
+                            <!-- <button type="button" class="btn btn-outline-warning me-2" (click)="deleteTask_util(task._id)">Edit</button> -->
+                            <button type="button" class="btn btn-outline-danger" (click)="deleteTask_util(task._id)">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -39,4 +40,4 @@
     </div>
 </div>
 
-<!-- <pre>{{tasks | json}}</pre> -->
+<pre>{{tasks | json}}</pre>

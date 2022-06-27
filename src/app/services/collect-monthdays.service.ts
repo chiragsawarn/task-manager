@@ -12,6 +12,7 @@ export class CollectMonthdaysService {
   monthdaysMessage$ = this._monthdaysMessageSource.asObservable();
 
   sendMessage(message:string){
+    console.log(message);
     this._monthdaysMessageSource.next(message);
   }
 }
